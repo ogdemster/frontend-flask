@@ -1,5 +1,9 @@
 # Getting Started with Create React App
 
+## INSTRUCTIONS
+
+In text area write your text and click the button. It will show what the mood the text gives.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

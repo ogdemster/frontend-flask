@@ -27,23 +27,26 @@ function App() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const result = await axios.post(
-      "http://127.0.0.1:5000/api/v1/data",
-      {
-        data: {
-          text: text,
+    try {
+      const result = await axios.post(
+        "http://127.0.0.1:5000/api/v1/data",
+        {
+          data: {
+            text: text,
+          },
         },
-      },
-      {
-        headers: {
-          "content-type": "application/json",
-        },
+        {
+          headers: {
+            "content-type": "application/json",
+          },
+        }
+      );
+      if (result) {
+        const { label } = result.data.received_data[0];
+        setSelectedEmoji(label[0]);
       }
-    );
-    if (result) {
-      const { label } = result.data.received_data[0];
-      setSelectedEmoji(label[0]);
-      console.log(label[0]);
+    } catch (error) {
+      alert(error);
     }
   };
 
@@ -65,6 +68,7 @@ function App() {
                 <Form.Control
                   as="textarea"
                   placeholder="Leave a comment here"
+                  style={{ height: "100px" }}
                 />
               </FloatingLabel>
               <Form.Text className="text-muted">
